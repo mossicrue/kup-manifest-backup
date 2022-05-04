@@ -1,0 +1,38 @@
+---
+frontend:
+  folder: frontend-project
+  resources:
+    - deployment
+    - imagestream
+    - service
+    - route
+    - serviceaccounts:
+      - default
+    - secret:
+      - frontend-certificates
+      - frontend-sensitive-data
+    - configmap:
+      - apache-conf
+      - virtual-server-conf
+backend:
+  folder: backend-project
+  resources:
+    - deployment
+    - imagestream
+    - service:
+      - backend-to-frontend
+      - backend-to-database
+    - serviceaccounts:
+      - default
+    - configmap:
+      - backend-configuration
+      - backend-project
+database:
+  folder: database-project
+  resources:
+    - deployment:
+      - database-1
+      - database-2
+    - service
+    - secret:
+      - database-certificates
